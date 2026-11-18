@@ -3,54 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nautical Calculator</title>
+<title>Nautical Calculator - Prince Onovughe</title>
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#021024;color:#fff;padding:6px}
-.top{text-align:center;padding:4px 0}
-.top h1{margin:0;font-size:19px;background:linear-gradient(90deg,#00d4ff,#ffe600,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.top p{margin:1px 0 6px;font-size:10px;color:#bfeaff}
-.top p b{color:#ffe600}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.card{background:#123252;border:1px solid #2a5a88;border-radius:10px;padding:7px}
-.card.full{grid-column:1/3}
-.card h3{margin:0 0 4px;font-size:11px;line-height:1.2}
-.card h3 span{background:#00d4ff;color:#021024;padding:1px 5px;border-radius:5px;font-size:10px}
-label{font-size:10px;color:#cfe6ff;display:block;margin:4px 0 1px}
-input{width:100%;padding:6px;border-radius:6px;border:none;background:#f0f7ff;font-size:12px;outline:none}
-.row{display:flex;gap:4px}
-.row>div{flex:1}
-.btn{width:100%;padding:6px;border:none;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#00ff88);font-size:11px;font-weight:900;margin-top:6px;color:#021024}
-.res{background:#ffe600;color:#021024;border-radius:6px;padding:4px;margin-top:5px;font-size:11px;font-weight:800;text-align:center;min-height:22px;line-height:1.2}
-.foot{text-align:center;font-size:10px;color:#9fc6e8;margin:8px 0}
+*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{margin:0;background:#021024;color:#fff;padding:0 12px 20px}
+.top{position:sticky;top:0;z-index:10;background:#021024;padding:12px 0 10px;text-align:center;border-bottom:1px solid #00d4ff}
+.top h1{margin:0;font-size:28px;background:linear-gradient(90deg,#00d4ff,#ffe600,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;letter-spacing:1px}
+.top p{margin:4px 0 0;color:#bfeaff;font-size:13px}
+.top b{color:#ffe600}
+.menu{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.menu a{white-space:nowrap;background:#123252;color:#fff;text-decoration:none;padding:7px 13px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid #2a5a88}
+.hero{background:linear-gradient(135deg,#00d4ff,#0077ff 55%,#7b2fff);border-radius:14px;padding:14px;text-align:center;margin:12px 0}
+.hero h2{margin:0;font-size:18px}
+.hero p{margin:5px 0 0;opacity:.9;font-size:13px}
+.card{background:#123252;border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 4px 15px rgba(0,0,0,.25)}
+.card h2{margin:0;font-size:16px;display:flex;align-items:center;gap:8px}
+.card h2 i{font-style:normal;background:#00d4ff;color:#021024;width:28px;height:28px;display:grid;place-items:center;border-radius:8px;font-size:14px}
+.card small{color:#9fc6e8;font-size:12px}
+label{display:block;margin:12px 0 5px;font-size:13px;font-weight:600;color:#d8ecff}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #2a5a88;background:#f0f7ff;font-size:15px;outline:none;color:#021024}
+input:focus{border-color:#00d4ff;background:#fff}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#00d4ff,#00ff88);font-size:15px;font-weight:900;margin-top:14px;cursor:pointer;color:#021024}
+.res{width:100%;padding:11px;border-radius:10px;background:#ffe600;color:#021024;font-size:15px;font-weight:800;margin-top:10px;text-align:center}
+.foot{text-align:center;color:#9fc6e8;font-size:12px;line-height:1.6;margin-top:14px}
 .foot b{color:#ffe600}
 </style>
 </head>
 <body>
-<div class="top"><h1>⚓ NAUTICAL</h1><p>For Seafarers - <b>Prince Onovughe</b></p></div>
-<div class="grid">
-<div class="card"><h3><span>1</span> ⏱ Time</h3><div class="row"><div><label>Dist NM</label><input id="d1" type="number" placeholder="120"></div><div><label>Speed</label><input id="s1" type="number" placeholder="12"></div></div><button class="btn" onclick="c1()">Calculate</button><div class="res" id="r1">Result</div></div>
-<div class="card"><h3><span>2</span> ⛽ Fuel Total</h3><div class="row"><div><label>Per Day</label><input id="f2" type="number" placeholder="20"></div><div><label>Days</label><input id="dy2" type="number" placeholder="5"></div></div><button class="btn" onclick="c2()">Calculate</button><div class="res" id="r2">Result</div></div>
-<div class="card"><h3><span>3</span> 📏 Distance</h3><div class="row"><div><label>Speed</label><input id="s3" type="number" placeholder="12"></div><div><label>Time Hr</label><input id="t3" type="number" placeholder="5"></div></div><button class="btn" onclick="c3()">Calculate</button><div class="res" id="r3">Result</div></div>
-<div class="card"><h3><span>4</span> 🕐 ETA</h3><div class="row"><div><label>Dist NM</label><input id="d4" type="number" placeholder="120"></div><div><label>Speed</label><input id="s4" type="number" placeholder="12"></div></div><button class="btn" onclick="c4()">Calculate</button><div class="res" id="r4">Result</div></div>
-<div class="card"><h3><span>5</span> 🚢 Speed</h3><div class="row"><div><label>Dist NM</label><input id="d5" type="number" placeholder="120"></div><div><label>Time Hr</label><input id="t5" type="number" placeholder="10"></div></div><button class="btn" onclick="c5()">Calculate</button><div class="res" id="r5">Result</div></div>
-<div class="card"><h3><span>6</span> ⏳ Fuel/Hr</h3><label>Fuel Per Day MT</label><input id="f6" type="number" placeholder="24"><button class="btn" onclick="c6()">Calculate</button><div class="res" id="r6">Result</div></div>
-<div class="card"><h3><span>7</span> 🔄 Knots → Km/h</h3><label>Knots</label><input id="k7" type="number" placeholder="12"><button class="btn" onclick="c7()">Convert</button><div class="res" id="r7">Result</div></div>
-<div class="card"><h3><span>8</span> 🛢 ROB</h3><div class="row"><div><label>Total</label><input id="t8" type="number" placeholder="500"></div><div><label>Used</label><input id="u8" type="number" placeholder="120"></div></div><button class="btn" onclick="c8()">Calculate</button><div class="res" id="r8">Result</div></div>
-<div class="card full"><h3><span>9</span> 🌊 Daily Run - Noon to Noon</h3><label>Average Speed (Knots)</label><input id="s9" type="number" placeholder="11.5"><button class="btn" onclick="c9()">Calculate</button><div class="res" id="r9">Result</div></div>
-</div>
-<div class="foot">⚓ <b>Prince Onovughe Nautical Calculator</b> • 1 NM = 1.852 km</div>
+<div class="top"><h1>⚓ NAUTICAL</h1><p>Calculator • For Seafarers - <b>Prince Onovughe</b></p><div class="menu"><a href="#c1">⏱ Time</a><a href="#c2">⛽ Fuel</a><a href="#c3">📏 Distance</a><a href="#c4">🕐 ETA</a><a href="#c5">🚢 Speed</a><a href="#c6">⏳ Per Hour</a><a href="#c7">🔄 Converter</a><a href="#c8">🛢 ROB</a><a href="#c9">🌊 Daily</a></div></div>
+<div class="hero"><h2>🌊 Sail Smart, Calculate Fast</h2><p>Distance • Speed • Time • Fuel • ETA • ROB</p></div>
+<div class="card" id="c1"><h2><i>⏱</i> 1. Distance / Speed / Time</h2><small>Find voyage time</small><label>Distance (NM)</label><input type="number" id="dist" placeholder="e.g 120"><label>Speed (Knots)</label><input type="number" id="speed" placeholder="e.g 12"><button class="btn" onclick="calcTime()">Calculate Time →</button><div class="res" id="result1">Result go show here</div></div>
+<div class="card" id="c2"><h2><i>⛽</i> 2. Fuel Consumption</h2><small>Total fuel for voyage</small><label>Fuel per day (MT)</label><input type="number" id="fuelDay" placeholder="e.g 20"><label>Days</label><input type="number" id="days" placeholder="e.g 5"><button class="btn" onclick="calcFuel()">Calculate Total Fuel →</button><div class="res" id="result2">Result go show here</div></div>
+<div class="card" id="c3"><h2><i>📏</i> 3. Find Distance</h2><small>Speed x Time</small><label>Speed (Knots)</label><input type="number" id="speed2" placeholder="e.g 12"><label>Time (Hours)</label><input type="number" id="time2" placeholder="e.g 5"><button class="btn" onclick="calcDist()">Calculate Distance →</button><div class="res" id="result3">Result go show here</div></div>
+<div class="card" id="c4"><h2><i>🕐</i> 4. ETA - Arrival Time</h2><small>When you go reach?</small><label>Distance (NM)</label><input type="number" id="distEta" placeholder="e.g 120"><label>Speed (Knots)</label><input type="number" id="speedEta" placeholder="e.g 12"><button class="btn" onclick="calcEta()">Calculate ETA →</button><div class="res" id="result4">Result go show here</div></div>
+<div class="card" id="c5"><h2><i>🚢</i> 5. Find Speed</h2><small>Distance / Time</small><label>Distance (NM)</label><input type="number" id="dist5" placeholder="e.g 120"><label>Time (Hours)</label><input type="number" id="time5" placeholder="e.g 10"><button class="btn" onclick="calcSpeed()">Calculate Speed →</button><div class="res" id="result5">Result go show here</div></div>
+<div class="card" id="c6"><h2><i>⏳</i> 6. Fuel Per Hour</h2><small>Hourly burn</small><label>Fuel per day (MT)</label><input type="number" id="fuelDay6" placeholder="e.g 24"><button class="btn" onclick="calcFuelHour()">Calculate Per Hour →</button><div class="res" id="result6">Result go show here</div></div>
+<div class="card" id="c7"><h2><i>🔄</i> 7. Knots to Km/h</h2><small>Quick converter</small><label>Speed (Knots)</label><input type="number" id="knot7" placeholder="e.g 12"><button class="btn" onclick="calcKnot()">Convert Now →</button><div class="res" id="result7">Result go show here</div></div>
+<div class="card" id="c8"><h2><i>🛢</i> 8. Bunker ROB</h2><small>Fuel remaining</small><label>Total Bunker (MT)</label><input type="number" id="total8" placeholder="e.g 500"><label>Fuel Used (MT)</label><input type="number" id="used8" placeholder="e.g 120"><button class="btn" onclick="calcRob()">Calculate ROB →</button><div class="res" id="result8">Result go show here</div></div>
+<div class="card" id="c9"><h2><i>🌊</i> 9. Daily Distance</h2><small>Noon-to-noon run</small><label>Average Speed (Knots)</label><input type="number" id="speed9" placeholder="e.g 11.5"><button class="btn" onclick="calcDaily()">Calculate Daily Run →</button><div class="res" id="result9">Result go show here</div></div>
+<div class="foot">⚓ <b>Prince Onovughe Nautical Calculator</b><br>1 knot = 1 NM per hour • 1 NM = 1.852 km</div>
 <script>
-function v(id){return parseFloat(document.getElementById(id).value)}
-function c1(){let d=v('d1'),s=v('s1');if(!d||!s){r1.innerText='Enter both';return}let t=d/s;let h=Math.floor(t),m=Math.round((t-h)*60);r1.innerText=h+' hrs '+m+' mins'}
-function c2(){let f=v('f2'),d=v('dy2');if(!f||!d){r2.innerText='Enter both';return}r2.innerText=(f*d).toFixed(2)+' MT'}
-function c3(){let s=v('s3'),t=v('t3');if(!s||!t){r3.innerText='Enter both';return}r3.innerText=(s*t).toFixed(2)+' NM'}
-function c4(){let d=v('d4'),s=v('s4');if(!d||!s){r4.innerText='Enter both';return}let t=d/s;let n=new Date();n.setHours(n.getHours()+t);r4.innerText=t.toFixed(2)+' hrs | '+n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
-function c5(){let d=v('d5'),t=v('t5');if(!d||!t){r5.innerText='Enter both';return}r5.innerText=(d/t).toFixed(2)+' Knots'}
-function c6(){let f=v('f6');if(!f){r6.innerText='Enter fuel';return}r6.innerText=(f/24).toFixed(3)+' MT/hr'}
-function c7(){let k=v('k7');if(!k){r7.innerText='Enter knots';return}r7.innerText=(k*1.852).toFixed(2)+' Km/h'}
-function c8(){let t=v('t8'),u=v('u8');if(isNaN(t)||isNaN(u)){r8.innerText='Enter both';return}r8.innerText=(t-u).toFixed(2)+' MT Left'}
-function c9(){let s=v('s9');if(!s){r9.innerText='Enter speed';return}r9.innerText=(s*24).toFixed(2)+' NM / Day'}
+function calcTime(){let d=parseFloat(document.getElementById('dist').value);let s=parseFloat(document.getElementById('speed').value);if(!d||!s){document.getElementById('result1').innerText="Enter Distance & Speed";return;}let t=d/s;let h=Math.floor(t);let m=Math.round((t-h)*60);document.getElementById('result1').innerText="⏱ Time: "+h+" hrs "+m+" mins ("+t.toFixed(2)+" hrs)";}
+function calcFuel(){let f=parseFloat(document.getElementById('fuelDay').value);let dy=parseFloat(document.getElementById('days').value);if(!f||!dy){document.getElementById('result2').innerText="Enter Fuel & Days";return;}document.getElementById('result2').innerText="⛽ Total Fuel: "+(f*dy).toFixed(2)+" MT";}
+function calcDist(){let s=parseFloat(document.getElementById('speed2').value);let t=parseFloat(document.getElementById('time2').value);if(!s||!t){document.getElementById('result3').innerText="Enter Speed & Time";return;}let d=s*t;document.getElementById('result3').innerText="📏 Distance: "+d.toFixed(2)+" NM ("+(d*1.852).toFixed(2)+" km)";}
+function calcEta(){let d=parseFloat(document.getElementById('distEta').value);let s=parseFloat(document.getElementById('speedEta').value);if(!d||!s){document.getElementById('result4').innerText="Enter Distance & Speed";return;}let t=d/s;let now=new Date();now.setHours(now.getHours()+t);document.getElementById('result4').innerText="🕐 Time: "+t.toFixed(2)+" hrs | ETA: "+now.toLocaleString();}
+function calcSpeed(){let d=parseFloat(document.getElementById('dist5').value);let t=parseFloat(document.getElementById('time5').value);if(!d||!t){document.getElementById('result5').innerText="Enter Distance & Time";return;}document.getElementById('result5').innerText="🚢 Speed: "+(d/t).toFixed(2)+" Knots";}
+function calcFuelHour(){let f=parseFloat(document.getElementById('fuelDay6').value);if(!f){document.getElementById('result6').innerText="Enter Fuel per day";return;}document.getElementById('result6').innerText="Per Hour: "+(f/24).toFixed(3)+" MT/hr";}
+function calcKnot(){let k=parseFloat(document.getElementById('knot7').value);if(!k){document.getElementById('result7').innerText="Enter Knots";return;}document.getElementById('result7').innerText=k+" Knots = "+(k*1.852).toFixed(2)+" Km/h";}
+function calcRob(){let t=parseFloat(document.getElementById('total8').value);let u=parseFloat(document.getElementById('used8').value);if(isNaN(t)||isNaN(u)){document.getElementById('result8').innerText="Enter Total & Used";return;}document.getElementById('result8').innerText="🛢 ROB Remaining: "+(t-u).toFixed(2)+" MT";}
+function calcDaily(){let s=parseFloat(document.getElementById('speed9').value);if(!s){document.getElementById('result9').innerText="Enter Speed";return;}let d=s*24;document.getElementById('result9').innerText="🌊 Daily Run: "+d.toFixed(2)+" NM ("+(d*1.852).toFixed(2)+" km)";}
 </script>
 </body>
-  </html>
+</html>
