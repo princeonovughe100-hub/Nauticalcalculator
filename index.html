@@ -1,99 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="tOgv3uoIhCg4N8vttyLJ75vL-p_Jk9pR5JvOb-pO8GU" />
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nautical Calculator</title>
-<!-- Nautical Calculator App -->
-<!-- Calculates Distance, Speed and Time -->
-<!-- 1 knot = 1 nautical mile per hour -->
-<!-- 1 nautical mile = 1.852 km -->
-<!-- Built for sailors and boat owners -->
-<!-- Works on phone and desktop -->
-<!-- No login needed -->
-<!-- Free to use -->
-<!-- Version 1.0 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nautical Calculator - For Seafarers - Prince Onovughe</title>
 <style>
-body { font-family: Arial, sans-serif; background: #0a1a2f; color: #fff; margin: 0; padding: 20px; }
-.container { max-width: 500px; margin: auto; background: #122a4a; padding: 20px; border-radius: 12px; }
-h1 { text-align: center; color: #4fc3f7; }
-label { display: block; margin-top: 15px; font-weight: bold; }
-input, select {
-  width: 100%; padding: 12px; margin-top: 5px;
-  border-radius: 8px; border: none; font-size: 16px; box-sizing: border-box;
-}
-button {
-  width: 100%; padding: 14px; margin-top: 20px;
-  background: #4fc3f7; color: #000; font-weight: bold;
-  font-size: 17px; border: none; border-radius: 8px;
-}
-.result {
-  margin-top: 20px; background: #fff; color: #000;
-  padding: 15px; border-radius: 8px; font-size: 18px; text-align: center;
-}
-.small { text-align: center; opacity: 0.7; margin-top: 10px; font-size: 13px; }
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#0a1a2e;color:white;padding:15px}
+h1{text-align:center;color:#29c4e8;font-size:38px;margin:10px 0 5px}
+.subtitle{text-align:center;margin:0 0 20px;font-size:17px}
+.card{background:#123252;border-radius:15px;padding:20px;margin-bottom:15px}
+.card h2{margin:0 0 15px;font-size:22px}
+label{display:block;margin:12px 0 5px;font-size:18px}
+input{width:100%;padding:14px;border-radius:10px;border:none;font-size:18px;outline:none}
+.btn{width:100%;padding:15px;border:none;border-radius:10px;background:#29c4e8;font-size:20px;font-weight:bold;margin-top:15px;cursor:pointer}
+.result{width:100%;padding:15px;border:none;border-radius:10px;background:#20e070;color:#000;font-size:19px;font-weight:bold;margin-top:12px;text-align:center}
+.small{text-align:center;color:#ccc;font-size:14px;margin-top:20px}
 </style>
 </head>
 <body>
-<div class="container">
-<h1>Nautical Calculator</h1>
-<label>Calculation Type</label>
-<select id="type" onchange="updateLabels()">
-<option value="distance">Distance = Speed x Time</option>
-<option value="speed">Speed = Distance / Time</option>
-<option value="time">Time = Distance / Speed</option>
-</select>
-<label id="label1">Speed (knots)</label>
-<input type="number" id="input1" placeholder="e.g. 12" />
-<label id="label2">Time (hours)</label>
-<input type="number" id="input2" placeholder="e.g. 5" />
-<button onclick="calculate()">Calculate</button>
-<div class="result" id="result">Enter values and tap Calculate</div>
-<div class="small">1 knot = 1 nautical mile per hour</div>
-<div class="small">1 nautical mile = 1.852 km</div>
+
+<h1>Calculator</h1>
+<p class="subtitle">For Seafarers - Prince Onovughe</p>
+
+<!-- 1. DISTANCE / SPEED / TIME -->
+<div class="card">
+<h2>1. Distance / Speed / Time</h2>
+<label>Distance (Nautical Miles)</label>
+<input type="number" id="dist" placeholder="e.g 120">
+<label>Speed (Knots)</label>
+<input type="number" id="speed" placeholder="e.g 12">
+<button class="btn" onclick="calcTime()">Calculate Time</button>
+<div class="result" id="result1">Result go show here</div>
 </div>
+
+<!-- 2. FUEL -->
+<div class="card">
+<h2>2. Fuel Consumption</h2>
+<label>Fuel per day (MT)</label>
+<input type="number" id="fuelDay" placeholder="e.g 20">
+<label>Days</label>
+<input type="number" id="days" placeholder="e.g 5">
+<button class="btn" onclick="calcFuel()">Calculate Total Fuel</button>
+<div class="result" id="result2">Result go show here</div>
+</div>
+
+<!-- 3. DISTANCE -->
+<div class="card">
+<h2>3. Find Distance</h2>
+<label>Speed (Knots)</label>
+<input type="number" id="speed2" placeholder="e.g 12">
+<label>Time (Hours)</label>
+<input type="number" id="time2" placeholder="e.g 5">
+<button class="btn" onclick="calcDist()">Calculate Distance</button>
+<div class="result" id="result3">Result go show here</div>
+</div>
+
+<!-- 4. ETA -->
+<div class="card">
+<h2>4. ETA - Arrival Time</h2>
+<label>Distance (Nautical Miles)</label>
+<input type="number" id="distEta" placeholder="e.g 120">
+<label>Speed (Knots)</label>
+<input type="number" id="speedEta" placeholder="e.g 12">
+<button class="btn" onclick="calcEta()">Calculate ETA</button>
+<div class="result" id="result4">Result go show here</div>
+</div>
+
+<p class="small">1 knot = 1 nautical mile per hour<br>1 nautical mile = 1.852 km</p>
+
 <script>
-function updateLabels() {
-  var t = document.getElementById("type").value;
-  var l1 = document.getElementById("label1");
-  var l2 = document.getElementById("label2");
-  if (t === "distance") {
-    l1.textContent = "Speed (knots)";
-    l2.textContent = "Time (hours)";
-  }
-  if (t === "speed") {
-    l1.textContent = "Distance (nautical miles)";
-    l2.textContent = "Time (hours)";
-  }
-  if (t === "time") {
-    l1.textContent = "Distance (nautical miles)";
-    l2.textContent = "Speed (knots)";
-  }
+function calcTime(){
+let d=parseFloat(document.getElementById('dist').value);
+let s=parseFloat(document.getElementById('speed').value);
+if(!d||!s){document.getElementById('result1').innerText="Enter Distance & Speed";return;}
+let t=d/s;
+let h=Math.floor(t); let m=Math.round((t-h)*60);
+document.getElementById('result1').innerText="Time: "+h+" hrs "+m+" mins ("+t.toFixed(2)+" hrs)";
 }
-function calculate() {
-  var t = document.getElementById("type").value;
-  var a = parseFloat(document.getElementById("input1").value);
-  var b = parseFloat(document.getElementById("input2").value);
-  var r = document.getElementById("result");
-  if (isNaN(a) || isNaN(b) || b === 0) {
-    r.textContent = "Please enter valid numbers";
-    return;
-  }
-  if (t === "distance") {
-    var d = a * b;
-    r.innerHTML = "Distance: <b>" + d.toFixed(2) + " NM</b><br>" + (d * 1.852).toFixed(2) + " km";
-  }
-  if (t === "speed") {
-    var s = a / b;
-    r.innerHTML = "Speed: <b>" + s.toFixed(2) + " knots</b>";
-  }
-  if (t === "time") {
-    var tm = a / b;
-    var h = Math.floor(tm);
-    var m = Math.round((tm - h) * 60);
-    r.innerHTML = "Time: <b>" + h + "h " + m + "m</b><br>" + tm.toFixed(2) + " hours";
-  }
+function calcFuel(){
+let f=parseFloat(document.getElementById('fuelDay').value);
+let dy=parseFloat(document.getElementById('days').value);
+if(!f||!dy){document.getElementById('result2').innerText="Enter Fuel & Days";return;}
+document.getElementById('result2').innerText="Total Fuel: "+(f*dy).toFixed(2)+" MT";
+}
+function calcDist(){
+let s=parseFloat(document.getElementById('speed2').value);
+let t=parseFloat(document.getElementById('time2').value);
+if(!s||!t){document.getElementById('result3').innerText="Enter Speed & Time";return;}
+let d=s*t;
+document.getElementById('result3').innerText="Distance: "+d.toFixed(2)+" NM ("+(d*1.852).toFixed(2)+" km)";
+}
+function calcEta(){
+let d=parseFloat(document.getElementById('distEta').value);
+let s=parseFloat(document.getElementById('speedEta').value);
+if(!d||!s){document.getElementById('result4').innerText="Enter Distance & Speed";return;}
+let t=d/s; let now=new Date(); now.setHours(now.getHours()+t);
+document.getElementById('result4').innerText="Sailing Time: "+t.toFixed(2)+" hrs | ETA: "+now.toLocaleString();
 }
 </script>
 </body>
